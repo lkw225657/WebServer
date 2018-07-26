@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+        xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://jax-ws.dev.java.net/spring/core http://jax-ws.dev.java.net/spring/core.xsd
+           http://jax-ws.dev.java.net/spring/servlet http://jax-ws.dev.java.net/spring/servlet.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="net.transino.lms"/>
+
+    <bean name="txWs" class="com.nstc.xerp.xfire.server.impl.TxService"/>
+
+    <wss:binding url="/webservices/notifyElecBillStatusWs">
+        <wss:service>
+            <ws:service bean="#notifyElecBillStatusWs"/>
+        </wss:service>
+    </wss:binding>
+    <wss:binding url="/webservices/applyElecBillTradeWs">
+        <wss:service>
+            <ws:service bean="#applyElecBillTradeWs"/>
+        </wss:service>
+    </wss:binding>
+
+
+    <wss:binding url="/webservices/txService">
+        <wss:service>
+            <ws:service bean="#txWs"/>
+        </wss:service>
+    </wss:binding>
+</beans>
